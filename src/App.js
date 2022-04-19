@@ -6,12 +6,16 @@ import Login from './screens/auth/Login';
 import Signup from './screens/auth/Signup';
 import Welcome from './screens/auth/Welcome';
 import Home from './screens/app/Home';
+import Societies from './screens/app/Societies';
+import Topbar from './components/Topbar';
 
 function App() {
   return (
     <Router>
+      <Topbar />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path='/societies' element={<Societies />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Welcome />} />

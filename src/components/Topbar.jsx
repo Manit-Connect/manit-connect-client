@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Recents', 'Community', 'Blog'];
+const pages = [];
 const settings = ['Profile', 'Account', 'Logout'];
 
 const Topbar = () => {
