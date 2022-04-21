@@ -15,7 +15,7 @@ const Home = () => {
     navigate('/create')
   }
   const getPosts = () => {
-    fetch('http://localhost:5000/posts')
+    fetch('https://tranquil-crag-17353.herokuapp.com/posts')
       .then(res => res.json())
       .then(posts => setPosts(posts))
   }

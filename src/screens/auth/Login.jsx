@@ -32,7 +32,7 @@ const Login = (name, email) => {
     }
   };
   const loginFunc = () => {
-    fetch("http://localhost:5000/auth/login", {
+    fetch("https://tranquil-crag-17353.herokuapp.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

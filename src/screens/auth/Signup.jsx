@@ -21,7 +21,7 @@ const Signup = () => {
     }
   };
   const signupFunc = () => {
-    fetch("http://localhost:5000/auth/signup", {
+    fetch("https://tranquil-crag-17353.herokuapp.com/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

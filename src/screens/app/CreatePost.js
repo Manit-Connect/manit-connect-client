@@ -63,7 +63,7 @@ const CreatePost = () => {
   const [values, setValues] = useState(initialValues);
   const navigate = useNavigate();
   const createPost = () => {
-    fetch('http://localhost:5000/posts/create', {
+    fetch('https://tranquil-crag-17353.herokuapp.com/posts/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
