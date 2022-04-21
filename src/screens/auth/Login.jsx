@@ -3,15 +3,26 @@ import login from '../../assets/lottie/login.json'
 import { Button, TextField } from '@mui/material'
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../app/hooks';
+import { setUser } from '../../features/user/userSlice';
 
 const initialValue = {
   email: '',
   password: ''
 }
 
-const Login = () => {
+const Login = (name, email) => {
   const [values, setValues] = React.useState(initialValue)
   const history = useNavigate()
+  const dispatch = useAppDispatch();
+  const addUser = () => {
+    dispatch(setUser(
+      {
+        name,
+        email
+      }
+    ))
+  }
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -36,6 +47,7 @@ const Login = () => {
         } else if (data.message === "Password is incorrect") {
           alert("Wrong password")
         } else if (data.message === "Login successful") {
+          addUser()
           history.push('/home')
         }
       }).catch(err => {

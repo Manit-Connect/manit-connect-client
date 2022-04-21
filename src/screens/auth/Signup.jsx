@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const initialValue = {
   email: '',
   password: '',
-  username: ''
+  name: ''
 }
 const Signup = () => {
   const [values, setValues] = React.useState(initialValue)
@@ -55,7 +55,7 @@ const Signup = () => {
         variant="outlined"
         className='login-input'
         value={values.username}
-        onChange={(e) => setValues({ ...values, username: e.target.value })}
+        onChange={(e) => setValues({ ...values, name: e.target.value })}
       />
       <TextField
         id="outlined-basic"

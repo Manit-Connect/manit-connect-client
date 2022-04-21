@@ -11,11 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 const pages = [];
 const settings = ['Profile', 'Account', 'Logout'];
 
 const Topbar = () => {
+  const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -35,14 +37,20 @@ const Topbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar style={{
+      backgroundColor: '#fff',
+      color: '#000',
+    }}
+      position="static"
+    >
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex', cursor: 'pointer' } }}
+            onClick={() => navigate('/home')}
           >
             Manit Connect
           </Typography>

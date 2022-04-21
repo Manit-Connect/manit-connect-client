@@ -10,11 +10,15 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { purple, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Modal, Stack } from '@mui/material';
+import { Box } from '@mui/system';
+import Share from '@mui/icons-material/Share';
+import { Facebook, LinkedIn, Twitter } from '@mui/icons-material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,72 +31,125 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Postcard() {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'white',
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 2,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+export default function Postcard({ post }) {
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const likePost = () => {
+    fetch('http://localhost:5000/posts/like', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: post.id,
+      }),
+    }).then(() => {
+      console.log('liked');
+    });
+  }
+
   return (
-    <Card style={{ margin: 16 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Aaroha"
-        subheader="Feburary 2, 2022"
-      />
-      <CardMedia
+    <>
+      <Card style={{ width: '100%', marginBottom: 12 }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: purple[500] }} aria-label="recipe" />
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={post.commitee}
+          subheader={post.createdAt}
+        />
+        {/* <CardMedia
         component="img"
         height="300"
         image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT39QbiIOWlPHJt2mbKZB0s23arBz9uEa9hDQ&usqp=CAU"
         alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      /> */}
         <CardContent>
-          <Typography paragraph>News:</Typography>
-          <Typography paragraph>
-            Sujeet is a 12-year old boy from the Anna Nagar slums, who began working from a very young age as a newspaper delivery boy. Oftentimes he has gone to bed on an empty stomach. Doing mundane things such as going to school and playing with friends had been eradicated from his life, since he had to sell newspapers for a living. At Aaroha, we wanted to bring about a change in his life since we believed in his potential. Today, Sujeet is a student at Silver Bells Convent School and is receiving education like any other child. Our volunteers tutor him regularly at the center in Anna Nagar. He is now the top ranker of his school and is on the path to fulfill his dream of becoming a scientist. He now believes that no dream is too difficult to achieve.
-          </Typography>
-          <Typography paragraph>
-            Due to tremendous efforts by our volunteers, and the willingness to learn among young children like Lavanya and their dedication to come out at the top, there have been new milestones that have been overturned in the past years. Lavanya, from Class V, who scored 99.75% in her Class IV results, thus coming out at the top of her class, was given the opportunity to join Carmel Convent School. From studying at a local government school to attending an English medium school where her needs will be tended to, Lavanya and Aaroha, have both come a long way. And she acts as an inspiration for the other children at the center.
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
+          <Typography variant="body2" color="text.secondary">
+            {post.title}
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton onClick={likePost} aria-label="add to favorites">
+            <FavoriteIcon />
+            <Typography sx={{ marginLeft: 1 }} variant="h6" color="text.secondary">
+              {post.likes}
+            </Typography>
+          </IconButton>
+          <IconButton onClick={handleOpen} aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>More:</Typography>
+            <Typography paragraph>
+              {post.content}
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Share Link
+          </Typography>
+          <Stack direction="row" spacing={1}>
+            <IconButton color='primary' aria-label="share">
+              <Share />
+            </IconButton>
+            <IconButton color='primary' aria-label="facebook">
+              <Facebook />
+            </IconButton>
+            <IconButton color='primary' aria-label="twitter">
+              <Twitter />
+            </IconButton>
+            <IconButton color='primary' aria-label="linkedin">
+              <LinkedIn />
+            </IconButton>
+          </Stack>
+        </Box>
+      </Modal>
+    </>
   );
 }
