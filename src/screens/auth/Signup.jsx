@@ -21,17 +21,17 @@ const Signup = () => {
     }
   };
   const signupFunc = () => {
-    fetch("https://tranquil-crag-17353.herokuapp.com/auth/signup", {
+    fetch("http://localhost:5000/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(values)
-    }).then(res => console.log(res))
+    }).then(res => res.json())
       .then(data => {
         if (data.message === "User already exists") {
           alert("User already exists")
-        } else if (data.message === "Signup successful") {
+        } else if (data.message === "User created") {
           navigate('/home')
         }
       }

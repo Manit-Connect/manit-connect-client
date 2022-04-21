@@ -57,7 +57,7 @@ export default function Postcard({ post }) {
   };
 
   const likePost = () => {
-    fetch('https://tranquil-crag-17353.herokuapp.com/posts/like', {
+    fetch('http://localhost:5000/posts/like', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

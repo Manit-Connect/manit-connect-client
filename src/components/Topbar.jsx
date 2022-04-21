@@ -21,6 +21,16 @@ const Topbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const handleClick = (setting) => {
+    if (setting === "Logout") {
+      logout()
+    }
+  }
+
+  const logout = () => {
+    navigate('/welcome')
+  }
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -97,7 +107,7 @@ const Topbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            Manit Connect
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -135,7 +145,7 @@ const Topbar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography onClick={() => handleClick(setting)} textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>

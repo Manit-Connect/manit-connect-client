@@ -13,7 +13,7 @@ const initialValue = {
 
 const Login = (name, email) => {
   const [values, setValues] = React.useState(initialValue)
-  const history = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const addUser = () => {
     dispatch(setUser(
@@ -32,14 +32,14 @@ const Login = (name, email) => {
     }
   };
   const loginFunc = () => {
-    fetch("https://tranquil-crag-17353.herokuapp.com/auth/login", {
+    fetch("http://localhost:5000/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(values)
     })
-      .then(res => console.log(res))
+      .then(res => res.json())
       .then(data => {
         console.log(data)
         if (data.message === "User not found") {
@@ -47,8 +47,9 @@ const Login = (name, email) => {
         } else if (data.message === "Password is incorrect") {
           alert("Wrong password")
         } else if (data.message === "Login successful") {
-          addUser()
-          history.push('/home')
+          // addUser()
+          console.log("Login successful")
+          navigate('/home')
         }
       }).catch(err => {
         console.log(err)
