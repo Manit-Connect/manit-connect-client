@@ -57,13 +57,13 @@ export default function Postcard({ post }) {
   };
 
   const likePost = () => {
-    fetch('https://tranquil-crag-17353.herokuapp.com/posts/like', {
+    fetch('https://tranquil-crag-17353.herokuapp.com/posts/like/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: post.id,
+        id: post._id,
       }),
     }).then(() => {
       console.log('liked');

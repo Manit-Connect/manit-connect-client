@@ -1,4 +1,4 @@
-import { Button, MenuItem, TextField, Typography } from '@mui/material'
+import { Button, Input, MenuItem, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -113,6 +113,14 @@ const CreatePost = () => {
           values={values.content}
           onChange={(e) => setValues({ ...values, content: e.target.value })}
         />
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <label htmlFor="contained-button-file">
+            <Input accept="image/*" id="contained-button-file" multiple type="file" />
+            <Button variant="contained" component="span">
+              Upload
+            </Button>
+          </label>
+        </Stack>
         <TextField
           id="outlined-select-currency"
           select
