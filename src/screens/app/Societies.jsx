@@ -10,8 +10,29 @@ import { useAppSelector } from '../../app/hooks'
 import { selectUser } from '../../features/user/userSlice'
 
 const Societies = () => {
+
+  const navigate = useNavigate()
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const user = useAppSelector(selectUser);
+
+  const handleFabClick = () => {
+    navigate('/create')
+  }
+
+  const getPosts = () => {
+    fetch(`${apiUrl}/posts`)
+      .then(res => res.json())
+      .then(posts => setPosts(posts))
+  }
+
+  useEffect(() => {
+    getPosts()
+    setLoading(false)
+  }, [])
+
   return (
-    <div className='societies'>
+    <div className='home'>
       <Topbar />
       <div className="home-body">
         {/* <Sidebar /> */}
