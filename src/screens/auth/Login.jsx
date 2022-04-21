@@ -43,7 +43,6 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.message === "User not found") {
           alert("User not found")
         } else if (data.message === "Password is incorrect") {

@@ -69,13 +69,27 @@ const Topbar = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
+      <Typography
+        variant="h6"
+        noWrap
+        component="div"
+        sx={{ mr: 2, display: { xs: 'none', md: 'flex', cursor: 'pointer' }, justifyContent: 'center', alignItems: 'center' }}
+        onClick={() => navigate('/home')}
+      >
+        Manit Connect
+      </Typography>
       <List>
-        {['Societies', 'Administration', 'Academics', 'Sports'].map((text, index) => (
-          <ListItem button key={text}>
+        {[
+          { name: 'Societies', path: '/societies' },
+          { name: 'Administration', path: '/administration' },
+          { name: "Academics", path: '/academics' },
+          { name: "Sports", path: '/sports' },
+        ].map((item, index) => (
+          <ListItem onClick={() => navigate(item.path)} button key={index}>
             <ListItemIcon>
               <CheckCircle />
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={item.name} />
           </ListItem>
         ))}
       </List>

@@ -27,8 +27,8 @@ const commitee = [
     label: 'Iste'
   },
   {
-    value: 'turyanad',
-    label: 'Turyanad'
+    value: 'tooryanaad',
+    label: 'Tooryanaad'
   },
   {
     value: 'robaroo',

@@ -2,7 +2,7 @@ const images = [
   {
     id: 1,
     name: "aaroha",
-    url: ""
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsyO6Z9wYjVvKwRs16QuT9ofdYeq4EkiXXcw&usqp=CAU"
   },
   {
     id: 2,
@@ -11,18 +11,18 @@ const images = [
   },
   {
     id: 3,
-    name: "turyanad",
-    url: ""
+    name: "tooryanaad",
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Gml3qy6dJwyFpme0uOdSpYuymKuDxToUFXM6DW_3QSoVaOjRA7oSC1jHdzsx1LG8d9A&usqp=CAU"
   },
   {
     id: 4,
     name: "iste",
-    url: ""
+    url: "https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/gallery/5e161eaa68319_iste.jpg?d=375x600"
   },
   {
     id: 5,
     name: "aeseaenak",
-    url: ""
+    url: "https://gumlet.assettype.com/freepressjournal/import/2019/03/4-10.jpg?format=webp&w=400&dpr=2.6"
   },
   {
     id: 6,
@@ -32,12 +32,12 @@ const images = [
   {
     id: 7,
     name: "quizzers",
-    url: ""
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQNGMJruhwFFv_avcp4ClB6h-wS3EPX34x0g&usqp=CAU"
   },
   {
     id: 8,
     name: "vision",
-    url: ""
+    url: "https://www.economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
   },
   {
     id: 9,
@@ -47,12 +47,12 @@ const images = [
   {
     id: 10,
     name: "zenith",
-    url: ""
+    url: "https://www.economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
   },
   {
     id: 11,
     name: "ieee",
-    url: ""
+    url: "https://imgv2-1-f.scribdassets.com/img/document/64792287/original/f53edc9a4e/1644526173?v=1"
   }
 ]
 
