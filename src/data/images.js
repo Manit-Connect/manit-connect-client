@@ -16,7 +16,7 @@ const images = [
   },
   {
     id: 4,
-    name: "iste", 
+    name: "iste",
     url: ""
   },
   {
@@ -29,6 +29,31 @@ const images = [
     name: "robaroo",
     url: "https://i.ytimg.com/vi/g8cbOlyJpI8/maxresdefault.jpg"
   },
+  {
+    id: 7,
+    name: "quizzers",
+    url: ""
+  },
+  {
+    id: 8,
+    name: "vision",
+    url: ""
+  },
+  {
+    id: 9,
+    name: "rotaract",
+    url: ""
+  },
+  {
+    id: 10,
+    name: "zenith",
+    url: ""
+  },
+  {
+    id: 11,
+    name: "ieee",
+    url: ""
+  }
 ]
 
 export default images;

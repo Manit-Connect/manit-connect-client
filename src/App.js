@@ -6,6 +6,7 @@ import Welcome from './screens/auth/Welcome';
 import Home from './screens/app/Home';
 import Societies from './screens/app/Societies';
 import CreatePost from './screens/app/CreatePost';
+import Academics from './screens/app/Academics';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/create" element={<CreatePost />} />
         <Route path='/societies' element={<Societies />} />
+        <Route path='/academics' element={<Academics />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Welcome />} />

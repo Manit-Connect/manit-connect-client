@@ -89,7 +89,7 @@ export default function Postcard({ post }) {
         />
         <CardMedia
           component="img"
-          height="300"
+          height="450"
           image={images.find(image => image.name === post.commitee).url}
           alt="Paella dish"
         />
