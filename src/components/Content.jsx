@@ -4,8 +4,11 @@ import Postcard from './Postcard'
 const Content = ({ posts }) => {
   return (
     <div className='content'>
-      {posts.map(post => (
-        <Postcard key={post.id} post={post} />
+      {posts.map((post, index) => (
+        <Postcard
+          key={index}
+          post={post}
+        />
       ))}
     </div>
   )

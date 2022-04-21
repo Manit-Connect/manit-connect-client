@@ -5,21 +5,23 @@ import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { setUser } from '../../features/user/userSlice';
+import { apiUrl } from '../../utils/constant';
 
 const initialValue = {
   email: '',
   password: ''
 }
 
-const Login = (name, email) => {
+const Login = () => {
   const [values, setValues] = React.useState(initialValue)
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
-  const addUser = () => {
+  const addUser = (name, email, token) => {
     dispatch(setUser(
       {
         name,
-        email
+        email,
+        token
       }
     ))
   }
@@ -32,7 +34,7 @@ const Login = (name, email) => {
     }
   };
   const loginFunc = () => {
-    fetch("https://tranquil-crag-17353.herokuapp.com/auth/login", {
+    fetch(`${apiUrl}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -47,8 +49,7 @@ const Login = (name, email) => {
         } else if (data.message === "Password is incorrect") {
           alert("Wrong password")
         } else if (data.message === "Login successful") {
-          // addUser()
-          console.log("Login successful")
+          addUser(data.user.name, data.user.email, data.token)
           navigate('/home')
         }
       }).catch(err => {

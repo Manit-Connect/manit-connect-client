@@ -3,6 +3,9 @@ import { Button, TextField } from '@mui/material'
 import Lottie from 'react-lottie';
 import signup from '../../assets/lottie/signup.json'
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../utils/constant';
+import { useAppDispatch } from '../../app/hooks';
+import { setUser } from '../../features/user/userSlice';
 
 const initialValue = {
   email: '',
@@ -12,6 +15,16 @@ const initialValue = {
 const Signup = () => {
   const [values, setValues] = React.useState(initialValue)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch();
+  const addUser = (name, email, token) => {
+    dispatch(setUser(
+      {
+        name,
+        email,
+        token
+      }
+    ))
+  }
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,7 +34,7 @@ const Signup = () => {
     }
   };
   const signupFunc = () => {
-    fetch("https://tranquil-crag-17353.herokuapp.com/auth/signup", {
+    fetch(`${apiUrl}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -32,6 +45,7 @@ const Signup = () => {
         if (data.message === "User already exists") {
           alert("User already exists")
         } else if (data.message === "User created") {
+          addUser(data.user.name, data.user.email, data.token)
           navigate('/home')
         }
       }

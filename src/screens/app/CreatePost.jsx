@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Topbar from '../../components/Topbar'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Create } from '@mui/icons-material'
+import { apiUrl } from '../../utils/constant'
 
 const initialValues = {
   title: '',
@@ -63,7 +64,7 @@ const CreatePost = () => {
   const [values, setValues] = useState(initialValues);
   const navigate = useNavigate();
   const createPost = () => {
-    fetch('https://tranquil-crag-17353.herokuapp.com/posts/create', {
+    fetch(`${apiUrl}/posts/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

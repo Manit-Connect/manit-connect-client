@@ -12,15 +12,19 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-import { Divider, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { CheckCircle } from '@mui/icons-material';
+import { useAppSelector } from '../app/hooks';
+import { selectUser } from '../features/user/userSlice';
 
 const pages = [];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 const Topbar = () => {
   const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const user = useAppSelector(selectUser)
 
   const handleClick = (setting) => {
     if (setting === "Logout") {
@@ -68,9 +72,9 @@ const Topbar = () => {
       <List>
         {['Societies', 'Administration', 'Academics', 'Sports'].map((text, index) => (
           <ListItem button key={text}>
-            {/* <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon> */}
+            <ListItemIcon>
+              <CheckCircle />
+            </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -109,7 +113,7 @@ const Topbar = () => {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
+              {/* <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -118,7 +122,7 @@ const Topbar = () => {
                 color="inherit"
               >
                 <MenuIcon />
-              </IconButton>
+              </IconButton> */}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -167,7 +171,9 @@ const Topbar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar>
+                    {user.name.charAt(0)}
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               <Menu

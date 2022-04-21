@@ -19,6 +19,8 @@ import { Modal, Stack } from '@mui/material';
 import { Box } from '@mui/system';
 import Share from '@mui/icons-material/Share';
 import { Facebook, LinkedIn, Twitter } from '@mui/icons-material';
+import { apiUrl } from '../utils/constant';
+import images from '../data/images';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -57,7 +59,7 @@ export default function Postcard({ post }) {
   };
 
   const likePost = () => {
-    fetch('https://tranquil-crag-17353.herokuapp.com/posts/like/', {
+    fetch(`${apiUrl}/posts/like/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,15 +84,15 @@ export default function Postcard({ post }) {
               <MoreVertIcon />
             </IconButton>
           }
-          title={post.commitee}
+          title={post.commitee.toUpperCase()}
           subheader={post.createdAt}
         />
-        {/* <CardMedia
-        component="img"
-        height="300"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT39QbiIOWlPHJt2mbKZB0s23arBz9uEa9hDQ&usqp=CAU"
-        alt="Paella dish"
-      /> */}
+        <CardMedia
+          component="img"
+          height="300"
+          image={images.find(image => image.name === post.commitee).url}
+          alt="Paella dish"
+        />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {post.title}

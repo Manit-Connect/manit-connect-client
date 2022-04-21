@@ -6,10 +6,8 @@ import Welcome from './screens/auth/Welcome';
 import Home from './screens/app/Home';
 import Societies from './screens/app/Societies';
 import CreatePost from './screens/app/CreatePost';
-import { useDispatch } from 'react-redux';
 
 function App() {
-  const dispatch = useDispatch();
   return (
     <Router>
       <Routes>

@@ -5,17 +5,21 @@ import Sidebar from '../../components/Sidebar'
 import Topbar from '../../components/Topbar'
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom'
-
+import { apiUrl } from '../../utils/constant'
+import { useAppSelector } from '../../app/hooks'
+import { selectUser } from '../../features/user/userSlice'
 
 const Home = () => {
   const navigate = useNavigate()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const user = useAppSelector(selectUser);
+  console.log(user)
   const handleFabClick = () => {
     navigate('/create')
   }
   const getPosts = () => {
-    fetch('https://tranquil-crag-17353.herokuapp.com/posts')
+    fetch(`${apiUrl}/posts`)
       .then(res => res.json())
       .then(posts => setPosts(posts))
   }
@@ -27,7 +31,7 @@ const Home = () => {
     <div className='home'>
       <Topbar />
       <div className="home-body">
-        <Sidebar />
+        {/* <Sidebar /> */}
         {loading ? (
           <div className="loading">
             <div className="loading-icon">
